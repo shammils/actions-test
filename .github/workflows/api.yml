@@ -5,6 +5,8 @@ on:
       - master
     types:
       - closed
+    paths:
+      - 'packages/api/**'
 jobs:
   deploy_api:
     if: github.event.pull_request.merged == true
