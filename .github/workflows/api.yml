@@ -1,13 +1,14 @@
 name: API
 on:
-  push:
-    branches:
-      - master
+  pull_request_target:
+    types:
+      - closed
   pull_request:
     branches:
       - master
 jobs:
-  deploy_api:
+  if_merged:
+    if: github.event.pull_request_target.merged == true
     runs-on: ubuntu-latest
     permissions:
       contents: 'read'
@@ -15,7 +16,7 @@ jobs:
 
     steps:
       - uses: 'actions/checkout@v3'
-    
+
       - id: 'auth'
         uses: 'google-github-actions/auth@v0.6.0'
         with:
