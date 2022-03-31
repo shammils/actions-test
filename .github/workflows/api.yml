@@ -3,11 +3,11 @@ on:
   pull_request:
     branches:
       - master
-  pull_request_target:
     types:
       - closed
 jobs:
   deploy_api:
+    if: github.event.pull_request.merged == true
     runs-on: ubuntu-latest
     permissions:
       contents: 'read'
