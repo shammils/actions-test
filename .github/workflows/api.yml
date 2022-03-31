@@ -24,5 +24,12 @@ jobs:
           workload_identity_provider: 'projects/661629032801/locations/global/workloadIdentityPools/aibo-pool/providers/aibo-provider'
           service_account: 'aibo-477@aibo-301005.iam.gserviceaccount.com'
 
-      - id: 'deploy'
+      - id: 'deploy-api'
         uses: 'google-github-actions/deploy-appengine@v0.8.0'
+        with:
+          deliverables: 'app.testnet.api.yaml'
+          
+      - id: 'deploy-indexer'
+        uses: 'google-github-actions/deploy-appengine@v0.8.0'
+        with:
+          deliverables: 'app.testnet.indexer.yaml'
