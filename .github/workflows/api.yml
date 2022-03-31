@@ -1,0 +1,26 @@
+name: API
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+    branches:
+      - master
+jobs:
+  deploy_api:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: 'read'
+      id-token: 'write'
+
+    steps:
+      - uses: 'actions/checkout@v3'
+
+      - id: 'auth'
+        uses: 'google-github-actions/auth@v0.6.0'
+        with:
+          workload_identity_provider: 'projects/661629032801/locations/global/workloadIdentityPools/aibo-pool/providers/aibo-provider'
+          service_account: 'aibo-477@aibo-301005.iam.gserviceaccount.com'
+
+      - id: 'deploy'
+        uses: 'google-github-actions/deploy-appengine@v0.8.0'
