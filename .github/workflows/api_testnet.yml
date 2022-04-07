@@ -1,0 +1,18 @@
+# Deploys the API to testnet when a PR is opened, reopened or edited regardless
+# of from where it branched from, as long as a change has occurred in the api
+# folder
+name: API Testnet
+on:
+  pull_request:
+    types: [opened, edited, reopened]
+    paths:
+      - 'packages/api/**'
+jobs:
+  deploy_api_testnet:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: 'actions/checkout@v3'
+
+      - name: 'Echo deploy result'
+        run: 'echo deployed to mainnet'
